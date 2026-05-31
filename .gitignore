@@ -1,0 +1,33 @@
+# =====================================================
+# MONOREPO — to-do-list-app
+# =====================================================
+
+# ── Front-End (Next.js) ──────────────────────────────
+Front-End/node_modules/
+Front-End/.next/
+Front-End/out/
+Front-End/storybook-static/
+Front-End/.env
+Front-End/.env.local
+Front-End/.env*.local
+Front-End/debug-storybook.log
+Front-End/prd_summary.md
+
+# ── Back-end (Laravel) ───────────────────────────────
+Back-end/vendor/
+Back-end/.env
+Back-end/storage/logs/*.log
+Back-end/.phpunit.cache/
+Back-end/storage/framework/cache/data/
+Back-end/storage/framework/sessions/
+Back-end/storage/framework/views/
+Back-end/node_modules/
+
+# ── Logs & Debug ─────────────────────────────────────
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# ── OS ───────────────────────────────────────────────
+.DS_Store
+Thumbs.db
