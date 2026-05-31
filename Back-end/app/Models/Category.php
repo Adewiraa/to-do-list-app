@@ -1,0 +1,31 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Category extends Model
+{
+    protected $fillable = [
+        'user_id',
+        'name',
+        'color',
+        'icon',
+    ];
+
+    /**
+     * Get the user that owns the category.
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    /**
+     * Get the tasks for the category.
+     */
+    public function tasks()
+    {
+        return $this->hasMany(Task::class);
+    }
+}
