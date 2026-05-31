@@ -1,58 +1,103 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 📝 To Do List App - Backend API (Laravel 13)
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+[![PHP Version](https://img.shields.io/badge/php-%3E%3D%208.3-blue.svg)](https://www.php.net/)
+[![Laravel Version](https://img.shields.io/badge/laravel-13.x-red.svg)](https://laravel.com/)
+[![Sanctum](https://img.shields.io/badge/auth-sanctum-green.svg)](https://laravel.com/docs/sanctum)
+[![License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](#license)
 
-## About Laravel
+API Engine tangguh, aman, dan berkinerja tinggi untuk aplikasi manajemen tugas (**To Do List App**). Dikembangkan menggunakan **Laravel 13** dan **Laravel Sanctum** untuk sistem otentikasi SPA/Token modern.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## ✨ Fitur Utama Backend
+* **Otentikasi Aman (Sanctum)**: Registrasi, login, logout, dan manajemen sesi pengguna yang aman via token.
+* **CRUD Kategori Berwarna**: Pengelompokan tugas dengan label warna kustom (`color`) dan penanda ikon (`icon`).
+* **CRUD Tugas Fleksibel**:
+  * Penyaringan canggih: Berdasarkan status (`pending`, `in_progress`, `done`, `cancelled`), prioritas (`low`, `medium`, `high`, `urgent`), kategori, dan tenggat waktu (`today`, `overdue`).
+  * Pencarian instan judul tugas (`search`).
+  * Pengurutan dinamis berdasarkan tenggat waktu, tingkat prioritas, atau tanggal dibuat.
+  * **Soft Deletes**: Fitur pemulihan (*restore*) tugas yang dihapus dari tong sampah.
+* **Audit Log Perubahan (Observer)**: Perekaman otomatis riwayat aktivitas perubahan tugas ke tabel `task_activities` (menyimpan perbandingan data JSON sebelum dan setelah disunting).
+* **Auto-Timestamp Selesai**: Mengisi otomatis waktu selesai (`completed_at`) jika status tugas diubah menjadi `done`, dan menghapusnya jika dibatalkan.
+* **Dashboard Analytics**: Agregasi data persentase penyelesaian, rincian prioritas, dan ringkasan tugas per kategori secara realtime.
+* **Rate Limiting (Proteksi DDoS & Brute Force)**:
+  * Maksimal 5 percobaan login/registrasi per menit per IP.
+  * Maksimal 60 request API umum per menit per pengguna.
+* **Sistem Pengingat Tenggat Waktu (Console Schedulers)**: Perintah Artisan otomatis untuk memindai tugas yang hampir jatuh tempo atau sudah terlambat dan mengirimkan simulasinya.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+---
 
-## Learning Laravel
+## 🛠️ Persyaratan Sistem
+* **PHP** `>= 8.3`
+* **MySQL/MariaDB**
+* **Composer**
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+---
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## 🚀 Panduan Instalasi Lokal
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+Ikuti langkah-langkah di bawah ini untuk menjalankan backend di komputer lokal Anda:
 
-## Agentic Development
+1. **Buka Terminal** dan arahkan ke folder `Back-end`.
+2. **Instal dependensi Composer**:
+   ```bash
+   composer install
+   ```
+3. **Salin file konfigurasi lingkungan**:
+   ```bash
+   cp .env.example .env
+   ```
+4. **Sesuaikan koneksi database Anda di file `.env`**:
+   ```env
+   DB_CONNECTION=mysql
+   DB_HOST=127.0.0.1
+   DB_PORT=3306
+   DB_DATABASE=todolist
+   DB_USERNAME=root
+   DB_PASSWORD=
+   ```
+5. **Generate Kunci Aplikasi**:
+   ```bash
+   php artisan key:generate
+   ```
+6. **Jalankan Migrasi & Database Seeder** (Untuk membuat tabel & data uji bawaan):
+   ```bash
+   php artisan migrate:fresh --seed
+   ```
+7. **Jalankan Web Server**:
+   ```bash
+   php artisan serve
+   ```
+   *API Anda sekarang aktif dan berjalan di alamat: **`http://127.0.0.1:8000`***
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+---
 
-```bash
-composer require laravel/boost --dev
+## 🧪 Panduan Pengetesan API
 
-php artisan boost:install
+### Metode 1: Menggunakan Postman (Rekomendasi)
+Kami telah menyediakan file konfigurasi Postman siap pakai di folder root backend Anda:
+1. Buka aplikasi **Postman**.
+2. Klik tombol **Import** di pojok kiri atas.
+3. Pilih file **`todolist_api_collection.json`** yang ada di folder ini.
+4. Koleksi request lengkap dengan variabel otentikasi otomatis sudah siap Anda gunakan!
+
+### Metode 2: Script Pengujian Terminal (PowerShell)
+Anda juga bisa menguji integritas seluruh API secara instan via terminal Windows Anda:
+```powershell
+.\test_api.ps1
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+---
 
-## Contributing
+## ⏰ Menjalankan Sistem Pengingat Tugas (Console Command)
+Untuk menjalankan pemindaian otomatis tugas yang terlambat atau mendekati tenggat waktu secara manual:
+```bash
+php artisan app:send-task-reminders
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+---
 
-## Code of Conduct
+## 📃 Lisensi
+Project ini didistribusikan di bawah lisensi resmi **MIT License**. Silakan baca file [LICENSE](../LICENSE) untuk informasi lebih lanjut.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+*Developed with ❤️ by **[Adewira](https://github.com/Adewiraa)**.*
