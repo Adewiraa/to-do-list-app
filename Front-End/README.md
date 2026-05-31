@@ -1,168 +1,167 @@
-# TaskFlow — Front-End
+# 🎨 Frontend — To-Do List App
 
-<div align="center">
-
-![TaskFlow Banner](https://img.shields.io/badge/TaskFlow-Premium%20Productivity%20App-334155?style=for-the-badge&logo=vercel&logoColor=white)
-![Next.js](https://img.shields.io/badge/Next.js-16.2-black?style=for-the-badge&logo=next.js)
-![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
-![License](https://img.shields.io/badge/License-Proprietary-DC2626?style=for-the-badge)
-
-**A premium, calm-designed productivity dashboard built with Next.js 16, Zod, React Query, and Storybook.**
-
-</div>
+Antarmuka pengguna untuk aplikasi manajemen tugas yang dibangun menggunakan **Next.js 16** dengan **App Router**, **TypeScript**, dan **Tailwind CSS**.
 
 ---
 
-## ✨ Features
+## 🚀 Teknologi
 
-- 🔐 **Authentication** — JWT-based login & registration with Zod validation
-- ✅ **Task Management** — Create, edit, delete (with confirmation), filter, sort, and mark tasks as done
-- 📂 **Category Management** — Color-coded categories with icon labels
-- 📊 **Dashboard** — Summary cards, weekly productivity chart, today's tasks, overdue tasks
-- 🎨 **Calm Off-white Design** — Natural, distraction-free UI following a "Calm Workspace" design system
-- 🧪 **Storybook** — Component stories for UI documentation and visual testing
-- ⚡ **Optimistic Updates** — Instant UI response on task status changes with server sync
-- 🔄 **Undo Delete** — Soft-delete with undo toast for task recovery
-
----
-
-## 🛠️ Tech Stack
-
-| Layer | Technology |
-|---|---|
-| Framework | Next.js 16.2 (App Router) |
-| Language | TypeScript 5 |
-| Styling | Tailwind CSS v4 |
-| Validation | Zod + React Hook Form |
-| State / Data | TanStack React Query v5 |
-| HTTP Client | Axios |
-| Component Docs | Storybook v10 |
-| Package Manager | pnpm |
-| Font | Geist (Google Fonts) |
-| Icons | Lucide React |
-| Charts | Recharts |
+| Teknologi | Versi | Kegunaan |
+|---|---|---|
+| Next.js | 16.2.6 | Framework React (App Router) |
+| React | 19.2.4 | Library UI |
+| TypeScript | ^5 | Keamanan Tipe Data |
+| Tailwind CSS | ^4 | Utility-first CSS Framework |
+| TanStack Query | ^5 | Manajemen State Server & Caching |
+| React Hook Form | ^7 | Manajemen & Kontrol Form |
+| Zod | ^4 | Validasi Skema Form |
+| Axios | ^1 | HTTP Client untuk API |
+| Recharts | ^3 | Grafik & Visualisasi Data |
+| Lucide React | ^1 | Library Ikon |
+| Storybook | ^10 | Pengembangan Komponen UI |
+| Vitest | ^4 | Unit & Integration Testing |
 
 ---
 
-## 📁 Project Structure
+## 📁 Struktur Direktori
 
 ```
-src/
-├── app/
-│   ├── page.tsx              # Login page
-│   ├── register/page.tsx     # Register page
-│   ├── dashboard/page.tsx    # Dashboard
-│   ├── tasks/page.tsx        # Task management
-│   ├── categories/page.tsx   # Category management
-│   └── layout.tsx            # Root layout
-├── components/
-│   ├── Sidebar.tsx           # Navigation sidebar
-│   ├── IconRenderer.tsx      # Dynamic icon resolver
-│   └── Providers.tsx         # React Query + Auth providers
-├── context/
-│   └── AuthContext.tsx       # Global auth state
-├── lib/
-│   ├── api.ts                # Axios API service clients
-│   ├── schemas.ts            # Zod validation schemas
-│   └── utils.ts              # Utilities
-└── stories/                  # Storybook stories
+Front-End/
+├── .storybook/             # Konfigurasi Storybook
+├── public/                 # Aset statis
+├── src/
+│   ├── app/                # Halaman (Next.js App Router)
+│   │   ├── page.tsx        # Halaman Login
+│   │   ├── register/       # Halaman Register
+│   │   ├── dashboard/      # Halaman Dashboard
+│   │   ├── tasks/          # Halaman Manajemen Tugas
+│   │   ├── categories/     # Halaman Manajemen Kategori
+│   │   ├── layout.tsx      # Layout Global
+│   │   └── globals.css     # Styling Global
+│   ├── components/         # Komponen UI yang dapat digunakan ulang
+│   ├── context/            # React Context (AuthContext)
+│   ├── lib/                # Utilitas, API client, validasi
+│   │   ├── api.ts          # Definisi semua API call
+│   │   ├── schemas.ts      # Skema validasi Zod
+│   │   └── utils.ts        # Fungsi utilitas umum
+│   └── stories/            # Storybook stories
+├── .env.local              # Variabel environment (tidak di-commit)
+├── next.config.ts          # Konfigurasi Next.js
+├── tailwind.config.ts      # Konfigurasi Tailwind CSS
+└── package.json
 ```
 
 ---
 
-## 🚀 Getting Started
+## ⚙️ Cara Instalasi
 
-### Prerequisites
-
-- Node.js 18+
-- pnpm (`npm install -g pnpm`)
-- Back-end API running (see `/back-end` folder)
-
-### Installation
+### 1. Masuk ke direktori frontend
 
 ```bash
-# Clone the repository
-git clone https://github.com/Adewiraa/to-do-list-app.git
-cd to-do-list-app/front-end
+cd Front-End
+```
 
-# Install dependencies
+### 2. Install dependensi
+
+```bash
 pnpm install
+```
 
-# Configure environment
+### 3. Salin dan konfigurasi file environment
+
+```bash
 cp .env.example .env.local
-# Edit .env.local and set NEXT_PUBLIC_API_URL to your backend URL
 ```
 
-### Running Locally
-
-```bash
-# Start development server
-pnpm dev
-
-# Open http://localhost:3000
-```
-
-### Storybook
-
-```bash
-# Start Storybook UI component explorer
-pnpm storybook
-
-# Open http://localhost:6006
-```
-
-### Production Build
-
-```bash
-pnpm build
-pnpm start
-```
-
----
-
-## 🔗 Back-End API
-
-This front-end connects to a **Laravel 12** REST API. See the [`/back-end`](../back-end/README.md) folder for setup instructions.
-
-Default API base URL: `http://127.0.0.1:8000/api/v1`
-
----
-
-## 🎨 Design System
-
-This application follows the **Calm Off-white & Slate** design system:
-
-| Token | Value |
-|---|---|
-| Background | `#F8FAFC` |
-| Surface | `#FFFFFF` |
-| Primary | `#334155` (Slate 700) |
-| Text | `#0F172A` |
-| Border | `#E2E8F0` |
-| Success | `#16A34A` |
-| Warning | `#F59E0B` |
-| Danger | `#DC2626` |
-
----
-
-## 📋 Environment Variables
-
-Create a `.env.local` file:
+Edit file `.env.local`:
 
 ```env
-NEXT_PUBLIC_API_URL=http://127.0.0.1:8000/api/v1
+NEXT_PUBLIC_API_URL=http://localhost:8000/api/v1
+```
+
+### 4. Jalankan server development
+
+```bash
+pnpm dev
+```
+
+Aplikasi tersedia di: `http://localhost:3000`
+
+---
+
+## 📄 Halaman Aplikasi
+
+| Halaman | Route | Deskripsi |
+|---|---|---|
+| Login | `/` | Halaman masuk ke aplikasi |
+| Register | `/register` | Halaman daftar akun baru |
+| Dashboard | `/dashboard` | Ringkasan statistik dan grafik tugas |
+| Tugas | `/tasks` | Manajemen tugas lengkap |
+| Kategori | `/categories` | Manajemen kategori tugas |
+
+---
+
+## ✨ Fitur Antarmuka
+
+- 🔐 **Form Login & Register** — Validasi lengkap sisi klien dengan Zod
+- 📊 **Dashboard Interaktif** — Statistik tugas, grafik tren produktivitas mingguan
+- ✅ **Manajemen Tugas** — Filter berdasarkan status, prioritas, kategori; toggle selesai dengan satu klik
+- 🏷️ **Manajemen Kategori** — Buat dan kelola kategori dengan warna kustom
+- 🗑️ **Konfirmasi Hapus** — Modal dialog konfirmasi sebelum menghapus data
+- ⏳ **Loading State** — Indikator loading yang konsisten di seluruh halaman
+- 📱 **Responsif** — Tampilan menyesuaikan berbagai ukuran layar
+
+---
+
+## 📖 Storybook
+
+Storybook digunakan untuk pengembangan dan dokumentasi komponen UI secara terisolasi.
+
+```bash
+pnpm storybook
+```
+
+Storybook tersedia di: `http://localhost:6006`
+
+---
+
+## 🧪 Menjalankan Test
+
+```bash
+# Jalankan semua unit test
+pnpm vitest
+
+# Jalankan test dengan mode watch
+pnpm vitest --watch
+
+# Lihat laporan coverage
+pnpm vitest --coverage
 ```
 
 ---
 
-## ⚖️ License
+## 📦 Perintah yang Tersedia
 
-This project is **proprietary software**. All rights reserved by **Adewiraa**.
-
-See [LICENSE](./LICENSE) for full terms. Unauthorized use, copying, or distribution is strictly prohibited.
+| Perintah | Deskripsi |
+|---|---|
+| `pnpm dev` | Jalankan server development di `localhost:3000` |
+| `pnpm build` | Build aplikasi untuk production |
+| `pnpm start` | Jalankan hasil build production |
+| `pnpm lint` | Periksa kode dengan ESLint |
+| `pnpm storybook` | Jalankan Storybook di `localhost:6006` |
+| `pnpm build-storybook` | Build Storybook untuk production |
+| `pnpm vitest` | Jalankan unit test |
 
 ---
 
-<div align="center">
-  Made with ❤️ by <a href="https://github.com/Adewiraa">Adewiraa</a>
-</div>
+## 🔗 Konfigurasi API
+
+Semua pemanggilan API didefinisikan di `src/lib/api.ts`. Pastikan backend Laravel sudah berjalan dan variabel `NEXT_PUBLIC_API_URL` sudah dikonfigurasi dengan benar di `.env.local`.
+
+Autentikasi menggunakan **Bearer Token** yang disimpan di `localStorage` setelah login berhasil.
+
+---
+
+## 📄 Lisensi
+
+Dilisensikan di bawah **MIT License**.

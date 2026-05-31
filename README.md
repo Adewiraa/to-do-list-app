@@ -1,251 +1,135 @@
 # 📝 To-Do List App
 
-A full-stack task management application built with a **Laravel REST API** backend and a **Next.js** frontend. This monorepo contains both projects under one repository.
+Aplikasi manajemen tugas berbasis web yang dibangun dengan arsitektur **full-stack monorepo**. Proyek ini terdiri dari dua bagian utama: REST API berbasis **Laravel** sebagai backend dan antarmuka pengguna berbasis **Next.js** sebagai frontend.
 
 ---
 
-## 📁 Repository Structure
+## 📁 Struktur Repositori
 
 ```
 to-do-list-app/
-├── Back-end/       # Laravel 13 REST API
-└── Front-End/      # Next.js 16 Application
+├── Back-end/       # REST API Laravel 13
+├── Front-End/      # Aplikasi Next.js 16
+├── .gitignore
+└── README.md
 ```
 
 ---
 
-## 🚀 Tech Stack
+## 🚀 Teknologi yang Digunakan
 
 ### Backend (`Back-end/`)
-| Technology | Version | Purpose |
+| Teknologi | Versi | Kegunaan |
 |---|---|---|
-| PHP | ^8.3 | Runtime |
-| Laravel | ^13.8 | Framework |
-| Laravel Sanctum | ^4.3 | API Authentication (Token-based) |
+| PHP | ^8.3 | Bahasa Pemrograman |
+| Laravel | ^13.8 | Framework Backend |
+| Laravel Sanctum | ^4.3 | Autentikasi API (Token) |
 | MySQL | - | Database |
 | PHPUnit | ^12 | Testing |
 
 ### Frontend (`Front-End/`)
-| Technology | Version | Purpose |
+| Teknologi | Versi | Kegunaan |
 |---|---|---|
-| Next.js | 16.2.6 | React Framework (App Router) |
-| React | 19.2.4 | UI Library |
-| TypeScript | ^5 | Type Safety |
+| Next.js | 16.2.6 | Framework React (App Router) |
+| React | 19.2.4 | Library UI |
+| TypeScript | ^5 | Keamanan Tipe Data |
 | Tailwind CSS | ^4 | Styling |
-| TanStack Query | ^5 | Server State Management |
-| React Hook Form | ^7 | Form Handling |
-| Zod | ^4 | Schema Validation |
+| TanStack Query | ^5 | Manajemen State Server |
+| React Hook Form | ^7 | Manajemen Form |
+| Zod | ^4 | Validasi Skema |
 | Axios | ^1 | HTTP Client |
-| Recharts | ^3 | Data Visualization |
-| Lucide React | ^1 | Icon Library |
-| Storybook | ^10 | UI Component Development |
+| Recharts | ^3 | Visualisasi Data |
+| Lucide React | ^1 | Ikon |
+| Storybook | ^10 | Pengembangan Komponen UI |
 | Vitest | ^4 | Unit Testing |
 
 ---
 
-## ✨ Features
+## ✨ Fitur Utama
 
-- 🔐 **Authentication** — Register, Login, Logout via token-based auth (Sanctum)
-- ✅ **Task Management** — Create, read, update, delete tasks with soft-delete support
-- 🏷️ **Categories** — Organize tasks by custom categories
-- 📊 **Dashboard** — Real-time summary of task statistics and productivity trends
-- 🔔 **Task Reminders** — Scheduled command for task reminder notifications
-- 📖 **Storybook** — Isolated UI component development and documentation
-- 🛡️ **Form Validation** — Client-side validation with Zod + server-side with Laravel Form Requests
+- 🔐 **Autentikasi** — Register, Login, Logout menggunakan token berbasis Sanctum
+- ✅ **Manajemen Tugas** — Buat, lihat, perbarui, dan hapus tugas dengan dukungan soft-delete
+- 🏷️ **Kategori** — Kelompokkan tugas berdasarkan kategori yang dapat dikustomisasi
+- 📊 **Dashboard** — Ringkasan statistik tugas dan grafik tren produktivitas secara real-time
+- 🔔 **Pengingat Tugas** — Jadwal otomatis untuk notifikasi pengingat tugas
+- 📖 **Storybook** — Pengembangan dan dokumentasi komponen UI secara terisolasi
+- 🛡️ **Validasi Form** — Validasi sisi klien dengan Zod dan sisi server dengan Laravel Form Request
+- 🗑️ **Konfirmasi Hapus** — Dialog konfirmasi sebelum menghapus tugas atau kategori
 
 ---
 
-## ⚙️ Getting Started
+## ⚙️ Cara Memulai
 
-### Prerequisites
+### Prasyarat
 
-Make sure you have the following installed:
+Pastikan perangkat lunak berikut sudah terpasang:
 - **PHP** >= 8.3
 - **Composer**
 - **Node.js** >= 18
 - **pnpm** >= 9
-- **MySQL** (or Laragon / XAMPP)
+- **MySQL** (atau Laragon / XAMPP)
 
 ---
 
-### 🔧 Backend Setup
+### 🔧 Setup Backend
+
+Lihat panduan lengkap di [Back-end/README.md](Back-end/README.md)
 
 ```bash
-# 1. Navigate to the backend directory
 cd Back-end
-
-# 2. Install PHP dependencies
 composer install
-
-# 3. Copy environment file and configure it
 cp .env.example .env
-
-# 4. Generate application key
 php artisan key:generate
-
-# 5. Configure your database in .env
-# DB_CONNECTION=mysql
-# DB_HOST=127.0.0.1
-# DB_PORT=3306
-# DB_DATABASE=todo_list
-# DB_USERNAME=root
-# DB_PASSWORD=
-
-# 6. Run database migrations
 php artisan migrate
-
-# 7. Start the development server
 php artisan serve
 ```
 
-The API will be available at: `http://localhost:8000`
+API tersedia di: `http://localhost:8000`
 
 ---
 
-### 🎨 Frontend Setup
+### 🎨 Setup Frontend
+
+Lihat panduan lengkap di [Front-End/README.md](Front-End/README.md)
 
 ```bash
-# 1. Navigate to the frontend directory
 cd Front-End
-
-# 2. Install dependencies
 pnpm install
-
-# 3. Copy environment file and configure it
 cp .env.example .env.local
-
-# 4. Set the API base URL in .env.local
-# NEXT_PUBLIC_API_URL=http://localhost:8000/api/v1
-
-# 5. Start the development server
+# Atur NEXT_PUBLIC_API_URL=http://localhost:8000/api/v1
 pnpm dev
 ```
 
-The app will be available at: `http://localhost:3000`
+Aplikasi tersedia di: `http://localhost:3000`
 
 ---
 
-### 📖 Storybook (UI Components)
-
-```bash
-cd Front-End
-pnpm storybook
-```
-
-Storybook will be available at: `http://localhost:6006`
-
----
-
-## 🗂️ API Endpoints
+## 🗂️ Endpoint API
 
 Base URL: `http://localhost:8000/api/v1`
 
-### Auth
-| Method | Endpoint | Description |
+| Metode | Endpoint | Deskripsi |
 |---|---|---|
-| `POST` | `/register` | Register a new user |
-| `POST` | `/login` | Login and receive token |
-| `POST` | `/logout` | Logout (revoke token) |
-
-### Tasks *(requires auth)*
-| Method | Endpoint | Description |
-|---|---|---|
-| `GET` | `/tasks` | List all tasks |
-| `POST` | `/tasks` | Create a new task |
-| `GET` | `/tasks/{id}` | Get a task |
-| `PUT` | `/tasks/{id}` | Update a task |
-| `DELETE` | `/tasks/{id}` | Soft-delete a task |
-| `PATCH` | `/tasks/{id}/toggle` | Toggle task completion |
-| `POST` | `/tasks/{id}/restore` | Restore deleted task |
-
-### Categories *(requires auth)*
-| Method | Endpoint | Description |
-|---|---|---|
-| `GET` | `/categories` | List all categories |
-| `POST` | `/categories` | Create a new category |
-| `PUT` | `/categories/{id}` | Update a category |
-| `DELETE` | `/categories/{id}` | Delete a category |
-
-### Dashboard *(requires auth)*
-| Method | Endpoint | Description |
-|---|---|---|
-| `GET` | `/dashboard` | Get task summary & statistics |
+| `POST` | `/register` | Daftar akun baru |
+| `POST` | `/login` | Login dan dapatkan token |
+| `POST` | `/logout` | Logout (cabut token) |
+| `GET` | `/dashboard` | Statistik & ringkasan tugas |
+| `GET` | `/tasks` | Daftar semua tugas |
+| `POST` | `/tasks` | Buat tugas baru |
+| `PUT` | `/tasks/{id}` | Perbarui tugas |
+| `DELETE` | `/tasks/{id}` | Hapus tugas (soft-delete) |
+| `PATCH` | `/tasks/{id}/toggle` | Toggle status selesai |
+| `GET` | `/categories` | Daftar semua kategori |
+| `POST` | `/categories` | Buat kategori baru |
+| `PUT` | `/categories/{id}` | Perbarui kategori |
+| `DELETE` | `/categories/{id}` | Hapus kategori |
 
 ---
 
-## 🗃️ Database Schema
+## 📄 Lisensi
 
-```
-users
-├── id, name, email, password, timestamps
-
-categories
-├── id, user_id (FK), name, color, timestamps, deleted_at
-
-tasks
-├── id, user_id (FK), category_id (FK)
-├── title, description, priority (low/medium/high)
-├── status (pending/in_progress/completed)
-├── due_date, is_completed
-├── timestamps, deleted_at
-
-task_activities
-├── id, task_id (FK), user_id (FK)
-├── activity_type, description, timestamps
-```
+Proyek ini dilisensikan di bawah **MIT License** — lihat file [LICENSE](Back-end/LICENSE) untuk detail.
 
 ---
 
-## 🧪 Running Tests
-
-### Backend
-```bash
-cd Back-end
-php artisan test
-```
-
-### Frontend
-```bash
-cd Front-End
-pnpm vitest
-```
-
----
-
-## 📦 Project Scripts
-
-### Backend
-| Command | Description |
-|---|---|
-| `php artisan serve` | Start dev server |
-| `php artisan migrate` | Run migrations |
-| `php artisan migrate:fresh` | Reset & re-run all migrations |
-| `php artisan test` | Run tests |
-
-### Frontend
-| Command | Description |
-|---|---|
-| `pnpm dev` | Start Next.js dev server |
-| `pnpm build` | Build for production |
-| `pnpm storybook` | Start Storybook |
-| `pnpm vitest` | Run unit tests |
-
----
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create your feature branch: `git checkout -b feat/your-feature`
-3. Commit your changes: `git commit -m "feat: add your feature"`
-4. Push to the branch: `git push origin feat/your-feature`
-5. Open a Pull Request
-
----
-
-## 📄 License
-
-This project is licensed under the **MIT License** — see the [LICENSE](Back-end/LICENSE) file for details.
-
----
-
-> Built with ❤️ by [Adewiraa](https://github.com/Adewiraa)
+> Dibuat dengan ❤️ oleh [Adewiraa](https://github.com/Adewiraa)
